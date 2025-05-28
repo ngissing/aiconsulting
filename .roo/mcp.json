@@ -1,0 +1,12 @@
+{
+  "servers": [
+    {
+      "name": "taskmaster-ai",
+      "command": "npx -y --package=task-master-ai task-master-ai",
+      "env": {
+       "ANTHROPIC_API_KEY": "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",
+       "PERPLEXITY_API_KEY": "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"
+      }
+    }
+  ]
+}
