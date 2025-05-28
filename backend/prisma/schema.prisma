@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid()) @map("id") // Maps to Supabase auth.users.id (UUID)
+  email     String   @unique
+  // passwordHash is managed by Supabase Auth
+  role      String   @default("admin")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  // which can be joined with auth.users
+
+  @@map("users") // This model maps to the public.users table
+}
+
+model QuizSession {
+  id                Int               @id @default(autoincrement())
+  sessionId         String            @unique
+  email             String?
+  schoolName        String?
+  ipAddress         String?
+  userAgent         String?
+  isCompleted       Boolean           @default(false)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  quizResponses     QuizResponse[]
+  generatedPolicies GeneratedPolicy[]
+}
+
+model QuizResponse {
+  id         Int         @id @default(autoincrement())
+  sessionId  String
+  session    QuizSession @relation(fields: [sessionId], references: [sessionId])
+  questionId Int
+  response   String?
+  createdAt  DateTime    @default(now())
+}
+
+model GeneratedPolicy {
+  id            Int         @id @default(autoincrement())
+  sessionId     String
+  session       QuizSession @relation(fields: [sessionId], references: [sessionId])
+  policyContent String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model QuizQuestion {
+  id            Int      @id @default(autoincrement())
+  questionText  String
+  questionType  String // e.g., "multiple-choice", "true-false", "free-text"
+  options       Json? // For multiple-choice questions
+  correctAnswer String? // Could be an index, a string, or not applicable
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Template {
+  id              Int      @id @default(autoincrement())
+  templateName    String   @unique
+  templateContent String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

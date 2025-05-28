@@ -14,7 +14,7 @@ node_modules/
 
 # Editor directories and files
 .idea
-.vscode
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
@@ -26,4 +26,21 @@ node_modules/
 
 # Task files
 tasks.json
-tasks/ 
+tasks/
+
+# Build output
+dist/
+build/
+out/
+
+# TypeScript
+*.tsbuildinfo
+
+# Vite cache
+.vite/
+
+# Test coverage
+coverage/
+
+# Taskmaster reports
+scripts/task-complexity-report.json
