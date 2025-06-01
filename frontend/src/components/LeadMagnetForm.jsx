@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Checkbox } from "@/components/ui/checkbox"; // Added Checkbox import
 import { useToast } from "@/components/ui/use-toast";
 import { CheckCircle2 } from "lucide-react";
 
@@ -11,6 +12,7 @@ const LeadMagnetForm = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [school, setSchool] = useState("");
+  const [hasConsented, setHasConsented] = useState(false); // Added consent state
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
@@ -35,7 +37,7 @@ const LeadMagnetForm = () => {
       // Store in localStorage
       try {
         const leads = JSON.parse(localStorage.getItem("leads") || "[]");
-        leads.push({ name, email, school, date: new Date().toISOString() });
+        leads.push({ name, email, school, hasConsented, date: new Date().toISOString() }); // Added hasConsented
         localStorage.setItem("leads", JSON.stringify(leads));
         
         setIsSuccess(true);
@@ -114,20 +116,36 @@ const LeadMagnetForm = () => {
                   />
                 </FormControl>
               </FormItem>
+
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                <FormControl>
+                  <Checkbox
+                    checked={hasConsented}
+                    onCheckedChange={setHasConsented}
+                    id="consent"
+                  />
+                </FormControl>
+                <div className="space-y-1 leading-none">
+                  <FormLabel htmlFor="consent" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                    I agree to receive marketing communications and for my data to be processed according to the <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Privacy Policy</a>.
+                  </FormLabel>
+                  <p className="text-xs text-gray-500">
+                    You can unsubscribe at any time. Providing consent is not required to use our services.
+                  </p>
+                </div>
+              </FormItem>
               
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 transition-all duration-300"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !hasConsented} // Disable if not consented
               >
                 {isSubmitting ? "Sending..." : "Get My Free Guide"}
               </Button>
             </div>
           </Form>
           
-          <p className="text-xs text-gray-500 mt-4 text-center">
-            We respect your privacy. Unsubscribe at any time.
-          </p>
+          {/* Removed redundant privacy message, now part of the consent checkbox label */}
         </motion.div>
       ) : (
         <motion.div

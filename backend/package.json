@@ -19,6 +19,7 @@
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
     "@types/hpp": "^0.2.6",
+    "@types/ioredis": "^4.28.10",
     "@types/node": "^22.15.23",
     "@typescript-eslint/eslint-plugin": "^8.33.0",
     "@typescript-eslint/parser": "^8.33.0",
@@ -33,9 +34,18 @@
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
+    "@supabase/supabase-js": "^2.49.8",
+    "@types/pdfkit": "^0.13.9",
+    "bullmq": "^5.53.1",
     "cors": "^2.8.5",
+    "docx": "^9.5.0",
     "dotenv": "^16.5.0",
+    "express-rate-limit": "^7.5.0",
     "helmet": "^8.1.0",
-    "hpp": "^0.2.3"
+    "hpp": "^0.2.3",
+    "ioredis": "^5.6.1",
+    "openai": "^5.0.1",
+    "pdfkit": "^0.17.1",
+    "puppeteer": "^24.9.0"
   }
 }

@@ -38,6 +38,7 @@ model QuizSession {
   updatedAt         DateTime          @updatedAt
   quizResponses     QuizResponse[]
   generatedPolicies GeneratedPolicy[]
+  consentRecords    ConsentRecord[] // Relation to ConsentRecord
 }
 
 model QuizResponse {
@@ -74,4 +75,20 @@ model Template {
   templateContent String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+}
+
+model ConsentRecord {
+  id            Int         @id @default(autoincrement())
+  quizSessionId String      // Foreign key to QuizSession
+  quizSession   QuizSession @relation(fields: [quizSessionId], references: [sessionId])
+  consentType   String      // e.g., "marketing_email", "data_processing"
+  isGiven       Boolean
+  method        String      // e.g., "web_form_checkbox", "quiz_progressive_collection"
+  timestamp     DateTime    @default(now()) // When the consent status was last set/updated
+  ipAddress     String?     // IP address at the time of consent
+  userAgent     String?     // User agent at the time of consent
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([quizSessionId])
 }

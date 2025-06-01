@@ -7,9 +7,7 @@ import { CheckCircle2 } from "lucide-react";
 const About = () => {
   const achievements = [
     "10+ years in educational technology",
-    "Helped implement AI in 100+ schools",
     "Former education technology director",
-    "Published author on AI in education",
     "Speaker at major education conferences",
     "Certified AI education specialist",
   ];
@@ -26,28 +24,11 @@ const About = () => {
             className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl border-8 border-white">
-              <img  className="w-full h-auto" alt="Nick Gissing, AI Education Consultant" src="https://images.unsplash.com/photo-1675270714610-11a5cadcc7b3" />
+              <img  className="w-full h-auto" alt="Nick Gissing, AI Education Consultant" src="/Presentation.JPG" />
               
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
             </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="absolute -bottom-10 -right-10 bg-white rounded-lg shadow-lg p-4 border border-blue-100"
-            >
-              <div className="flex items-center gap-3">
-                <div className="bg-blue-100 rounded-full p-2">
-                  <CheckCircle2 className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium">Trusted by</p>
-                  <p className="text-lg font-bold">100+ Schools</p>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
           
           <motion.div
@@ -78,9 +59,6 @@ const About = () => {
               ))}
             </div>
             
-            <Button className="bg-blue-600 hover:bg-blue-700 transition-colors mt-4">
-              Learn More About Me
-            </Button>
           </motion.div>
         </div>
       </div>

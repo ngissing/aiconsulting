@@ -8,6 +8,7 @@ import About from '@/components/About';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import QuizContainer from '@/components/quiz/QuizContainer'; // Added import for QuizContainer
 
 // Placeholder for a HomePage component or direct rendering
 const HomePage = () => (
@@ -27,6 +28,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/quiz" element={<QuizContainer />} /> {/* Added route for the quiz */}
           {/* Add other routes here as pages are created */}
         </Routes>
       </main>

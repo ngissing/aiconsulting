@@ -3,6 +3,11 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import authRoutes from './routes/authRoutes';
+import quizRoutes from './routes/quizRoutes'; // Added quizRoutes import
+import policyRoutes from './routes/policyRoutes'; // Added policyRoutes import
+import documentRoutes from './routes/documentRoutes'; // Added documentRoutes import
+import './services/queueService'; // Import to initialize and start the queue worker
 
 dotenv.config();
 
@@ -20,6 +25,12 @@ app.use(hpp());
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' })); // Limit request body size
+
+// Mount auth routes
+app.use('/api/auth', authRoutes);
+app.use('/api/quiz', quizRoutes); // Added quizRoutes
+app.use('/api/policy', policyRoutes); // Added policyRoutes
+app.use('/api/documents', documentRoutes); // Added documentRoutes
 
 // Basic Error Handling Middleware
 interface HttpError extends Error {

@@ -86,7 +86,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
-                  <p className="font-medium">nick@gissing-ai-education.com</p>
+                  <p className="font-medium">nickgissing@gmail.com</p>
                 </div>
               </div>
               
@@ -96,7 +96,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Phone</p>
-                  <p className="font-medium">(555) 123-4567</p>
+                  <p className="font-medium">0434370894</p>
                 </div>
               </div>
               
@@ -106,7 +106,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Location</p>
-                  <p className="font-medium">Boston, MA - Available Nationwide</p>
+                  <p className="font-medium">Wodonga, Victoria</p>
                 </div>
               </div>
             </div>

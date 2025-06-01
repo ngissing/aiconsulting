@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 // Import your reducers here
 import exampleReducer from './features/exampleSlice';
+import quizReducer from './features/quizSlice'; // Added quizReducer import
 
 export const store = configureStore({
   reducer: {
     // Add your reducers here
     example: exampleReducer,
+    quiz: quizReducer, // Added quizReducer
   },
 });
 

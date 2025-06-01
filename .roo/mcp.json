@@ -4,8 +4,13 @@
       "name": "taskmaster-ai",
       "command": "npx -y --package=task-master-ai task-master-ai",
       "env": {
+<<<<<<< HEAD
        "ANTHROPIC_API_KEY": "",
        "PERPLEXITY_API_KEY": ""
+=======
+       "ANTHROPIC_API_KEY": 
+       "PERPLEXITY_API_KEY": 
+>>>>>>> b18cd060c3cb480a087d332ef3d978a834603838
       }
     }
   ]

@@ -9,32 +9,32 @@ const serviceItems = [
   {
     icon: <Lightbulb className="h-10 w-10 text-blue-500" />,
     title: "AI Strategy Development",
-    description: "Custom AI implementation strategies tailored to your school's unique needs and goals.",
+    description: "Custom AI implementation strategies tailored to your school's unique needs and goals. We'll work together to create a roadmap for successful AI adoption.",
   },
   {
     icon: <Users className="h-10 w-10 text-blue-500" />,
     title: "Teacher Training",
-    description: "Comprehensive training programs to help educators effectively use AI tools in the classroom.",
+    description: "Comprehensive training programs to help educators effectively use AI tools in the classroom. Empower your staff with the skills to leverage AI for enhanced teaching.",
   },
   {
     icon: <PenTool className="h-10 w-10 text-blue-500" />,
     title: "Curriculum Integration",
-    description: "Seamlessly integrate AI tools and concepts into your existing curriculum.",
+    description: "Seamlessly integrate AI tools and concepts into your existing curriculum. We ensure AI enhances learning without disrupting established educational frameworks.",
   },
   {
     icon: <BarChart className="h-10 w-10 text-blue-500" />,
     title: "Data Analysis",
-    description: "Leverage AI to analyze student performance data and identify areas for improvement.",
+    description: "Leverage AI to analyze student performance data and identify areas for improvement. Gain actionable insights to support student growth and optimize teaching methods.",
   },
   {
     icon: <BookOpen className="h-10 w-10 text-blue-500" />,
     title: "Educational Resource Development",
-    description: "Create AI-enhanced learning materials and resources for your students.",
+    description: "Create AI-enhanced learning materials and resources for your students. Develop engaging and effective content that utilizes the latest AI capabilities.",
   },
   {
     icon: <Zap className="h-10 w-10 text-blue-500" />,
     title: "Administrative Automation",
-    description: "Streamline administrative tasks with AI solutions that save time and reduce errors.",
+    description: "Streamline administrative tasks with AI solutions that save time and reduce errors. Free up valuable staff resources by automating routine processes.",
   },
 ];
 
@@ -101,27 +101,14 @@ const Services = () => {
                     {service.description}
                   </CardDescription>
                 </CardHeader>
-                <CardFooter>
-                  <Button variant="outline" className="w-full border-blue-200 hover:bg-blue-50 text-blue-600">
-                    Learn More
-                  </Button>
-                </CardFooter>
+                <CardContent>
+                  {/* Content can be added here if needed in the future, for now description is in CardDescription */}
+                </CardContent>
               </Card>
             </motion.div>
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mt-12"
-        >
-          <Button className="bg-blue-600 hover:bg-blue-700 transition-colors">
-            View All Services
-          </Button>
-        </motion.div>
       </div>
     </section>
   );

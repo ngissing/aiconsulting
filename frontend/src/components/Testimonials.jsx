@@ -9,19 +9,19 @@ const testimonials = [
     quote: "Nick's guidance transformed how our school approaches technology. His AI implementation strategy was practical, ethical, and incredibly effective.",
     name: "Dr. Sarah Johnson",
     title: "Principal, Westfield Academy",
-    image: "principal"
+    image: "/Testimonial1.jpg"
   },
   {
     quote: "Working with Nick was eye-opening. He helped our teachers embrace AI tools that actually reduced their workload while improving student outcomes.",
-    name: "Michael Chen",
+    name: "Michael Fitzgerald",
     title: "Technology Director, Riverdale High School",
-    image: "tech-director"
+    image: "/Testimonial2.jpg"
   },
   {
     quote: "Nick's approach is refreshingly practical. He understands the real challenges educators face and provides solutions that make a meaningful difference.",
     name: "Emily Rodriguez",
     title: "Head of Curriculum, Oakridge Elementary",
-    image: "curriculum-head"
+    image: "/Testimonial3.jpg"
   }
 ];
 
@@ -65,7 +65,7 @@ const Testimonials = () => {
                   <p className="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
                   <div className="flex items-center">
                     <div className="mr-4">
-                      <img  className="h-12 w-12 rounded-full object-cover" alt={`${testimonial.name} portrait`} src="https://images.unsplash.com/photo-1603991414220-51b87b89a371" />
+                      <img  className="h-12 w-12 rounded-full object-cover" alt={`${testimonial.name} portrait`} src={testimonial.image} />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-900">{testimonial.name}</p>

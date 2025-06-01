@@ -1,7 +1,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
 import { ArrowRight, BookOpen, School, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -35,23 +34,19 @@ const Hero = () => {
                 <ArrowRight className="w-4 h-4" />
               </Button>
               
-              <Button variant="outline" className="border-blue-200 hover:bg-blue-50 transition-colors flex items-center gap-2 px-6 py-6">
-                <BookOpen className="w-4 h-4" />
-                View Case Studies
-              </Button>
             </div>
             
             <div className="grid grid-cols-3 gap-4 pt-6">
               <div className="flex flex-col items-center text-center">
-                <div className="text-blue-600 font-bold text-2xl">100+</div>
+                <div className="text-blue-600 font-bold text-2xl">20+</div>
                 <div className="text-gray-600 text-sm">Schools Helped</div>
               </div>
               <div className="flex flex-col items-center text-center">
-                <div className="text-blue-600 font-bold text-2xl">5000+</div>
+                <div className="text-blue-600 font-bold text-2xl">500+</div>
                 <div className="text-gray-600 text-sm">Teachers Trained</div>
               </div>
               <div className="flex flex-col items-center text-center">
-                <div className="text-blue-600 font-bold text-2xl">98%</div>
+                <div className="text-blue-600 font-bold text-2xl">100%</div>
                 <div className="text-gray-600 text-sm">Satisfaction Rate</div>
               </div>
             </div>
@@ -66,10 +61,12 @@ const Hero = () => {
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
             
-            <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-100 p-6">
-              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-              <LeadMagnetForm />
-            </div>
+            <img
+              src="/hero-image.jpg"
+              alt="AI Education Consultation"
+              className="rounded-lg w-full h-auto object-cover"
+              style={{ maxHeight: '400px' }} // Optional: constrain height
+            />
             
             <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full hero-gradient rounded-full blur-3xl"></div>
           </motion.div>
