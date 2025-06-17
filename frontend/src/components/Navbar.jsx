@@ -65,9 +65,11 @@ const Navbar = () => {
             >
               Contact
             </a>
-            <Button className="bg-blue-600 hover:bg-blue-700 transition-colors">
-              Book a Consultation
-            </Button>
+            <a href="#contact">
+              <Button className="bg-blue-600 hover:bg-blue-700 transition-colors">
+                Book a Consultation
+              </Button>
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -118,9 +120,11 @@ const Navbar = () => {
             >
               Contact
             </a>
-            <Button className="bg-blue-600 hover:bg-blue-700 transition-colors w-full">
-              Book a Consultation
-            </Button>
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="bg-blue-600 hover:bg-blue-700 transition-colors w-full">
+                Book a Consultation
+              </Button>
+            </a>
           </div>
         </motion.div>
       )}

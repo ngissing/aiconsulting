@@ -7,6 +7,7 @@ import authRoutes from './routes/authRoutes';
 import quizRoutes from './routes/quizRoutes'; // Added quizRoutes import
 import policyRoutes from './routes/policyRoutes'; // Added policyRoutes import
 import documentRoutes from './routes/documentRoutes'; // Added documentRoutes import
+import contactRoutes from './routes/contactRoutes';
 import './services/queueService'; // Import to initialize and start the queue worker
 
 dotenv.config();
@@ -31,6 +32,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/quiz', quizRoutes); // Added quizRoutes
 app.use('/api/policy', policyRoutes); // Added policyRoutes
 app.use('/api/documents', documentRoutes); // Added documentRoutes
+app.use('/api', contactRoutes); // Added contactRoutes (handles /api/contact)
 
 // Basic Error Handling Middleware
 interface HttpError extends Error {

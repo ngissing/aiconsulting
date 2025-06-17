@@ -29,10 +29,12 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <Button className="bg-blue-600 hover:bg-blue-700 transition-colors text-white flex items-center gap-2 px-6 py-6">
-                Book a Consultation
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+              <a href="#contact">
+                <Button className="bg-blue-600 hover:bg-blue-700 transition-colors text-white flex items-center gap-2 px-6 py-6">
+                  Book a Consultation
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </a>
               
             </div>
             

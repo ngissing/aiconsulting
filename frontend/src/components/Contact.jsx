@@ -15,7 +15,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -30,14 +30,16 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
-    setTimeout(() => {
-      // Store in localStorage
-      try {
-        const contacts = JSON.parse(localStorage.getItem("contacts") || "[]");
-        contacts.push({ name, email, school, message, date: new Date().toISOString() });
-        localStorage.setItem("contacts", JSON.stringify(contacts));
-        
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, school, message }),
+      });
+
+      if (response.ok) {
         // Reset form
         setName("");
         setEmail("");
@@ -48,16 +50,23 @@ const Contact = () => {
           title: "Message sent!",
           description: "Thank you for reaching out. I'll get back to you soon.",
         });
-      } catch (error) {
+      } else {
+        const errorData = await response.json();
         toast({
-          title: "Something went wrong",
-          description: "Please try again later.",
+          title: "Failed to send message",
+          description: errorData.message || "Please try again later.",
           variant: "destructive",
         });
       }
-      
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
