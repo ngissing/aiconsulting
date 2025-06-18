@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { pdfService } from '../services/pdfService'; // Import pdfService for direct use
 // import { generatePolicyDocx } from '../services/docxService'; // No longer directly used
-import { addDocumentJob } from '../services/queueService'; // Import queue service
+// import { addDocumentJob } from '../services/queueService'; // Temporarily commented out: Import queue service
 
 interface PolicySection {
   title: string;
@@ -29,12 +29,13 @@ export const createPdfPolicy = async (req: Request, res: Response): Promise<void
       }
     }
     
-    const job = await addDocumentJob('pdf', policyData);
-    res.status(202).json({
-      message: 'PDF generation job accepted.',
-      jobId: job.id,
-      customJobId: job.data.jobId // The custom ID we created
-    });
+    // const job = await addDocumentJob('pdf', policyData); // Temporarily commented out
+    // res.status(202).json({
+    //   message: 'PDF generation job accepted.',
+    //   jobId: job.id,
+    //   customJobId: job.data.jobId // The custom ID we created
+    // });
+    res.status(503).json({ message: 'PDF generation via queue is temporarily unavailable.' }); // Inform client
 
     // Old direct generation code:
     // const pdfBuffer = await generatePolicyPdf(policyData);
@@ -71,12 +72,13 @@ export const createDocxPolicy = async (req: Request, res: Response): Promise<voi
       }
     }
 
-    const job = await addDocumentJob('docx', policyData);
-    res.status(202).json({
-      message: 'DOCX generation job accepted.',
-      jobId: job.id,
-      customJobId: job.data.jobId // The custom ID we created
-    });
+    // const job = await addDocumentJob('docx', policyData); // Temporarily commented out
+    // res.status(202).json({
+    //   message: 'DOCX generation job accepted.',
+    //   jobId: job.id,
+    //   customJobId: job.data.jobId // The custom ID we created
+    // });
+    res.status(503).json({ message: 'DOCX generation via queue is temporarily unavailable.' }); // Inform client
 
     // Old direct generation code:
     // const docxBuffer = await generatePolicyDocx(policyData);

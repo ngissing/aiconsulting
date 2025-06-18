@@ -1,5 +1,5 @@
-import { Queue, Worker, Job } from 'bullmq';
-import IORedis from 'ioredis';
+// import { Queue, Worker, Job } from 'bullmq'; // Temporarily commented out
+// import IORedis from 'ioredis'; // Temporarily commented out
 import { pdfService } from './pdfService'; // Updated import
 import { generatePolicyDocx } from './docxService';
 import fs from 'fs/promises'; // For saving to a temporary location or a shared volume
@@ -25,6 +25,8 @@ interface DocumentJobResult {
 const queueName = 'documentGenerationQueue';
 
 // Initialize Redis connection (ensure REDIS_HOST and REDIS_PORT are in .env)
+// TEMPORARILY COMMENTED OUT FOR TESTING CONTACT FORM
+/*
 const connection = new IORedis({
   host: process.env.REDIS_HOST || '127.0.0.1',
   port: parseInt(process.env.REDIS_PORT || '6379', 10),
@@ -42,6 +44,9 @@ export const documentQueue = new Queue<DocumentJobData, DocumentJobResult>(queue
     },
   },
 });
+*/
+// Placeholder for documentQueue if needed elsewhere, to avoid breaking imports, though it won't function
+export const documentQueue = {} as any; // Using 'any' as Queue type would be unavailable
 
 // Define the output directory for generated documents
 // In a real application, this might be a cloud storage bucket or a shared volume.
@@ -57,10 +62,12 @@ const ensureOutputDir = async () => {
     // Depending on the setup, this might be a critical error
   }
 };
-ensureOutputDir();
+// ensureOutputDir(); // Temporarily commented out for testing contact form
 
 
 // Create a worker to process jobs from the queue
+// TEMPORARILY COMMENTED OUT FOR TESTING CONTACT FORM
+/*
 export const documentWorker = new Worker<DocumentJobData, DocumentJobResult>(
   queueName,
   async (job: Job<DocumentJobData, DocumentJobResult>) => {
@@ -101,7 +108,7 @@ export const documentWorker = new Worker<DocumentJobData, DocumentJobResult>(
       throw new Error(errorMessage); // This will mark the job as failed
     }
   },
-  { connection }
+  { connection } // This 'connection' would be undefined if the above block is commented out
 );
 
 documentWorker.on('completed', (job: Job<DocumentJobData, DocumentJobResult>, result: DocumentJobResult) => {
@@ -118,22 +125,38 @@ documentWorker.on('failed', (job, err) => {
   // Add logic here for handling failed jobs, e.g., sending alerts.
 });
 
-console.log('Document generation worker started.');
+console.log('Document generation worker would have started (temporarily disabled).');
+*/
+// Placeholder for documentWorker if needed
+export const documentWorker = {} as any; // Using 'any' for simplicity as it's temporarily disabled
 
 // Function to add a document generation job to the queue
+// TEMPORARILY COMMENTED OUT FOR TESTING CONTACT FORM
+/*
 export const addDocumentJob = async (type: 'pdf' | 'docx', policyData: DocumentJobData['policyData']): Promise<Job<DocumentJobData, DocumentJobResult>> => {
   const jobId = `${type}-${policyData.title.replace(/\s+/g, '_')}-${Date.now()}`; // Simple unique ID
   const job = await documentQueue.add('generateDocument', { type, policyData, jobId });
   console.log(`Added job ${job.id} (custom ID: ${jobId}) to the ${type} document generation queue.`);
   return job;
 };
+*/
 
 // Graceful shutdown
+// TEMPORARILY COMMENTED OUT FOR TESTING CONTACT FORM
+/*
 process.on('SIGINT', async () => {
-  console.log('Shutting down document queue and worker...');
-  await documentWorker.close();
-  await documentQueue.close();
-  await connection.quit();
-  console.log('Document queue and worker shut down.');
+  console.log('Shutting down document queue and worker (if they were running)...');
+  if (documentWorker && typeof documentWorker.close === 'function') {
+    await documentWorker.close();
+  }
+  if (documentQueue && typeof documentQueue.close === 'function') {
+    await documentQueue.close();
+  }
+  // 'connection' would be undefined here if the IORedis instantiation is commented out
+  // if (connection && typeof connection.quit === 'function') {
+  //   await connection.quit();
+  // }
+  console.log('Document queue and worker shutdown process attempted.');
   process.exit(0);
 });
+*/

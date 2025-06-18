@@ -1,16 +1,18 @@
-import express, { Express, Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
+dotenv.config(); // Ensure this is the very first thing to run
+
+import express, { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
-import authRoutes from './routes/authRoutes';
-import quizRoutes from './routes/quizRoutes'; // Added quizRoutes import
-import policyRoutes from './routes/policyRoutes'; // Added policyRoutes import
-import documentRoutes from './routes/documentRoutes'; // Added documentRoutes import
-import contactRoutes from './routes/contactRoutes';
-import './services/queueService'; // Import to initialize and start the queue worker
+// import authRoutes from './routes/authRoutes'; // Temporarily commented out
+// import quizRoutes from './routes/quizRoutes'; // Temporarily commented out
+// import policyRoutes from './routes/policyRoutes'; // Temporarily commented out
+// import documentRoutes from './routes/documentRoutes'; // Temporarily commented out
+import contactRoutes from './routes/contactRoutes'; // Re-enabling this one
+// import './services/queueService'; // Temporarily commented out to avoid Redis connection error
 
-dotenv.config();
+// dotenv.config(); // Moved to the top
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
@@ -28,11 +30,11 @@ app.use(hpp());
 app.use(express.json({ limit: '10kb' })); // Limit request body size
 
 // Mount auth routes
-app.use('/api/auth', authRoutes);
-app.use('/api/quiz', quizRoutes); // Added quizRoutes
-app.use('/api/policy', policyRoutes); // Added policyRoutes
-app.use('/api/documents', documentRoutes); // Added documentRoutes
-app.use('/api', contactRoutes); // Added contactRoutes (handles /api/contact)
+// app.use('/api/auth', authRoutes); // Temporarily commented out
+// app.use('/api/quiz', quizRoutes); // Temporarily commented out
+// app.use('/api/policy', policyRoutes); // Temporarily commented out
+// app.use('/api/documents', documentRoutes); // Temporarily commented out
+app.use('/api', contactRoutes); // Re-enabling this one (handles /api/contact)
 
 // Basic Error Handling Middleware
 interface HttpError extends Error {

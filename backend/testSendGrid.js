@@ -1,5 +1,7 @@
-// Load environment variables from .env file
-require('dotenv').config({ path: './.env' });
+const path = require('path');
+// Load environment variables from .env file located in the same directory as this script
+// or more robustly, point directly to backend/.env if script is always in backend/
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 const sgMail = require('@sendgrid/mail');
 
@@ -14,8 +16,8 @@ if (process.env.SENDGRID_API_KEY) {
 // uncomment the above line if you are sending mail using a regional EU subuser
 
 const msg = {
-  to: 'nickgissing@gmail.com', // Recipient
-  from: 'nickgissing@gmail.com', // Verified sender
+  to: 'info@nickgissing.com', // Recipient
+  from: 'info@nickgissing.com', // Verified sender (ensure domain is authenticated in SendGrid)
   subject: 'Test: Sending with SendGrid is Fun',
   text: 'and easy to do anywhere, even with Node.js',
   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
