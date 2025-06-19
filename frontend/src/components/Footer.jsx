@@ -60,13 +60,13 @@ const Footer = () => {
             <p className="font-semibold text-lg mb-4">Contact</p>
             <ul className="space-y-2">
               <li className="text-gray-400">
-                <span>nickgissing@gmail.com</span>
+                <span>info@nickgissing.com</span>
               </li>
               <li className="text-gray-400">
                 <span>(+61) 434 370 894</span>
               </li>
               <li className="text-gray-400">
-                <span>Thurgoona, NSW</span>
+                <span>Wodonga, Victoria</span>
               </li>
             </ul>
           </div>
